@@ -1,0 +1,205 @@
+/* style.css */
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #212121; /* Azul suave */
+    color: #333;
+}
+
+header {
+    background: linear-gradient(90deg, #007BFF, #00CFFF);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid #0056b3;
+}
+
+.logo h1 {
+    color: #FFD700;
+    font-size: 2.5rem;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+}
+
+.balance {
+    margin-right: 20px;
+    font-size: 1.2rem;
+}
+
+.deposit-btn {
+    padding: 10px 20px;
+    background-color: #FF5722;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.deposit-btn:hover {
+    background-color: #e64a19;
+    transform: translateY(-1px);
+}
+
+.banner {
+    background: #D32F2F;
+    text-align: center;
+    padding: 30px;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.banner-text p {
+    margin: 5px 0;
+}
+
+.banner-text strong {
+    font-size: 1.3em;
+    color: #FFD700;
+}
+
+.category-menu {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    padding: 15px 0;
+    background-color: #4E342E;
+    border-radius: 8px;
+}
+
+.category {
+    background-color: transparent;
+    color: #FF5722;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.category.active {
+    color: #FFD700;
+    border-bottom: 2px solid #FFD700;
+}
+
+.jackpot {
+    text-align: center;
+    background-color: #FF5722;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.jackpot h2 {
+    font-size: 2em;
+}
+
+.jackpot p {
+    font-size: 1.5em;
+    color: #FFD700;
+}
+
+.games-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.game-card {
+    text-align: center;
+    background-color: #4E342E;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px;
+    transition: transform 0.2s;
+}
+
+.game-card:hover {
+    transform: translateY(-3px);
+}
+
+.game-card img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+footer {
+    background: #212121;
+    color: #FFD700;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+footer li {
+    list-style: none;
+}
+
+footer a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #00CFFF;
+}
+
+/* Estilos do modal */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 1; /* Fica em cima */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgb(0,0,0); /* Cor de fundo */
+    background-color: rgba(0,0,0,0.4); /* Fundo com transparência */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% da parte superior e centralizado */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; /* Largura do modal */
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+

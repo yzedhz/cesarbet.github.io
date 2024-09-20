@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo do Tigrinho - PG</title>
+    <link rel="stylesheet" href="tigrinho.css"> <!-- Link para o CSS -->
+</head>
+<body>
+    <header>
+        <h1>Jogo do Tigrinho</h1>
+        <p>Saldo: R$ <span id="balance">0,00</span></p>
+    </header>
+
+    <main class="game-container">
+        <div class="game-info">
+            <h2>Como Jogar</h2>
+            <p>Gire os rolos e tente ganhar o maior número de prêmios!</p>
+        </div>
+
+        <div class="slots">
+            <div class="line">
+                <div class="slot">🎰</div>
+                <div class="slot">🎰</div>
+                <div class="slot">🎰</div>
+            </div>
+            <div class="line">
+                <div class="slot">🎰</div>
+                <div class="slot">🎰</div>
+                <div class="slot">🎰</div>
+            </div>
+            <div class="line">
+                <div class="slot">🎰</div>
+                <div class="slot">🎰</div>
+                <div class="slot">🎰</div>
+            </div>
+        </div>
+
+        <input type="number" id="bet-amount" placeholder="Valor da Aposta" />
+        <button class="spin-btn">Girar</button>
+
+        <div class="result">
+            <h3>Resultado</h3>
+            <p id="result-text">-</p>
+        </div>
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="tigrinho.html" class="active">Tigrinho</a></li>
+                <li><a href="deposito.html">Depósito</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script src="tigrinho.js"></script> <!-- Link para o JavaScript -->
+    <script>
+        // Carrega o saldo do localStorage
+        let balance = parseFloat(localStorage.getItem('balance')) || 100;
+        document.getElementById('balance').textContent = balance.toFixed(2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depósito - CESARBET</title>
+    <link rel="stylesheet" href="deposito.css"> <!-- Link para o seu arquivo CSS -->
+</head>
+<body>
+    <header>
+        <h1>CESARBET</h1>
+        <p>Saldo: R$ 0,00</p>
+    </header>
+
+    <main class="deposit-container">
+        <h2>Fazer Depósito</h2>
+        <form action="processar-deposito.php" method="POST">
+            <div class="form-group">
+                <label for="deposit-amount">Valor do Depósito (R$):</label>
+                <input type="number" id="deposit-amount" name="deposit-amount" min="10" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="payment-method">Método de Pagamento:</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="pix">PIX</option>
+                    <option value="boleto">Boleto Bancário</option>
+                    <option value="cartao">Cartão de Crédito</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Confirmar Depósito</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="saque.html">Saque</a></li>
+                <li><a href="promocao.html">Promoção</a></li>
+                <li><a href="deposito.html" class="active">Depósito</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>

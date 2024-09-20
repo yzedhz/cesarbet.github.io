@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa de Apostas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo do modal */
+        .modal {
+            display: none; /* Oculto por padrão */
+            position: fixed;
+            z-index: 1; /* Fica em cima */
+            left: 0;
+            top: 0;
+            width: 100%; /* Largura total */
+            height: 100%; /* Altura total */
+            overflow: auto; /* Habilita rolagem se necessário */
+            background-color: rgb(0,0,0); /* Cor de fundo */
+            background-color: rgba(0,0,0,0.4); /* Fundo com transparência */
+        }
+
+        /* Conteúdo do modal */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% da parte superior e centralizado */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Largura do modal */
+            border-radius: 5px;
+        }
+
+        /* Botão de fechar */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>CESARBET</h1>
+            </div>
+            <div class="status">
+                <span class="balance">Saldo: R$ <strong id="balance">0,00</strong></span>
+                <button id="register-btn">Registrar</button>
+                <a href="deposito.html">Depósito</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="banner-text">
+            <p>MELHOR CASA CHINESA DO BRASIL</p>
+            <p><strong>Um único envelope vermelho até R$ 888</strong></p>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="category-menu">
+            <button class="category active">Popular</button>
+            <button class="category">Slots</button>
+            <button class="category">Pescaria</button>
+            <button class="category">Esporte</button>
+        </div>
+
+        <div class="jackpot">
+            <h2>JACKPOT</h2>
+            <p>R$: 109.299.301,94</p>
+        </div>
+
+        <div class="games-grid">
+            <div class="game-card">
+                <img src="fg.jpg" alt="Fortune Dragon">
+                <p>Fortune Dragon</p>
+            </div>
+            <div class="game-card">
+                <a href="tigrinho.html">
+                    <img src="tigrinho.webp" alt="Fortune Tiger" />
+                    <p>Fortune Tiger</p>
+                </a>
+            </div>           
+        </div>
+    </section>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Saque</a></li>
+                <li><a href="#">Promoção</a></li>
+                <li><a href="deposito.html">Depósito</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- Modal de Registro -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registrar</h2>
+            <form id="register-form">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" required><br>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" required><br>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Saldo inicial
+        let balance = parseFloat(localStorage.getItem('balance')) || 100;
+        document.getElementById('balance').textContent = balance.toFixed(2);
+
+        const registerBtn = document.getElementById('register-btn');
+        const registerModal = document.getElementById('register-modal');
+        const closeModal = document.querySelector('.close');
+
+        // Abre o pop-up quando o botão é clicado
+        registerBtn.onclick = function() {
+            registerModal.style.display = 'block';
+        }
+
+        // Fecha o pop-up quando o "X" é clicado
+        closeModal.onclick = function() {
+            registerModal.style.display = 'none';
+        }
+
+        // Fecha o pop-up quando o usuário clica fora dele
+        window.onclick = function(event) {
+            if (event.target == registerModal) {
+                registerModal.style.display = 'none';
+            }
+        }
+
+        // Salva o nome de usuário no localStorage ao registrar
+        document.getElementById('register-form').onsubmit = function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const existingUser = localStorage.getItem('username');
+
+            if (!existingUser) {
+                localStorage.setItem('username', username); // Armazena o nome de usuário
+                alert('Registro realizado com sucesso!');
+                registerModal.style.display = 'none'; // Fecha o pop-up após registro
+            } else {
+                alert('Você já está registrado!');
+            }
+        }
+    </script>
+</body>
+</html>

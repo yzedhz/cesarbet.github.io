@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário - Casa de Apostas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="user-info">
+                <img src="https://via.placeholder.com/50" alt="Avatar" class="avatar">
+                <div class="account-details">
+                    <p>Conta: <strong id="usernameDisplay">User123</strong></p>
+                    <p>ID: <strong>01</strong></p>
+                </div>
+                <div class="user-balance">
+                    <p><span class="balance-icon">&#128065;</span> Saldo: R$ <strong id="balance">0,00</strong></p>
+                </div>
+            </div>
+            <div class="header-icons">
+                <button class="icon-btn">Support</button>
+                <button class="icon-btn">Mensagem</button>
+                <button class="icon-btn">Dados</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="vip-section">
+        <div class="vip-status">
+            <p>Restantes VIP1 - Valor restante para aposta 10,00</p>
+            <div class="progress-bar">
+                <div class="progress" style="width: 0%;"></div>
+            </div>
+            <p>Depósito necessário: <strong>0,00/10</strong></p>
+        </div>
+    </section>
+
+    <section class="main-options">
+        <div class="option">
+            <button>Saque</button>
+        </div>
+        <div class="option">
+            <button>Depósito</button>
+        </div>
+        <div class="option">
+            <button>Juros</button>
+        </div>
+    </section>
+
+    <section class="profile-actions">
+        <ul>
+            <li><a href="#">Recuperar o saldo</a></li>
+            <li><a href="#">Detalhes da Conta</a></li>
+            <li><a href="#">Apostas</a></li>
+            <li><a href="#">Relatório Pessoal</a></li>
+            <li><a href="#">Configurações de saque</a></li>
+            <li><a href="#">Convidar</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#">Saque</a></li>
+                <li><a href="#">Promoção</a></li>
+                <li><a href="#">Depósito</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <script>
+        // Carrega o nome de usuário do localStorage e atualiza a exibição
+        const usernameDisplay = document.getElementById('usernameDisplay');
+        const storedUsername = localStorage.getItem('username');
+        if (storedUsername) {
+            usernameDisplay.textContent = storedUsername; // Atualiza o nome de usuário exibido
+        }
+
+        // Carrega o saldo do localStorage ou define como 100 se não existir
+        let balance = parseFloat(localStorage.getItem('balance')) || 100;
+        document.getElementById('balance').textContent = balance.toFixed(2);
+    </script>
+</body>
+</html>

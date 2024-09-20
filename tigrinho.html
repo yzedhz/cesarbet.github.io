@@ -1,66 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo do Tigrinho - PG</title>
-    <link rel="stylesheet" href="tigrinho.css"> <!-- Link para o CSS -->
+    <title>Fortune Tiger</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Adicione estilos adicionais se necessário */
+    </style>
 </head>
 <body>
     <header>
-        <h1>Jogo do Tigrinho</h1>
-        <p>Saldo: R$ <span id="balance">0,00</span></p>
+        <div class="header-content">
+            <div class="logo">
+                <h1>CESARBET</h1>
+            </div>
+            <div class="status">
+                <span class="balance">Saldo: R$ <strong id="balance">0,00</strong></span>
+                <a href="deposito.html">Depósito</a>
+            </div>
+        </div>
     </header>
 
-    <main class="game-container">
-        <div class="game-info">
-            <h2>Como Jogar</h2>
-            <p>Gire os rolos e tente ganhar o maior número de prêmios!</p>
-        </div>
-
-        <div class="slots">
-            <div class="line">
-                <div class="slot">🎰</div>
-                <div class="slot">🎰</div>
-                <div class="slot">🎰</div>
-            </div>
-            <div class="line">
-                <div class="slot">🎰</div>
-                <div class="slot">🎰</div>
-                <div class="slot">🎰</div>
-            </div>
-            <div class="line">
-                <div class="slot">🎰</div>
-                <div class="slot">🎰</div>
-                <div class="slot">🎰</div>
-            </div>
-        </div>
-
-        <input type="number" id="bet-amount" placeholder="Valor da Aposta" />
-        <button class="spin-btn">Girar</button>
-
-        <div class="result">
-            <h3>Resultado</h3>
-            <p id="result-text">-</p>
-        </div>
-    </main>
+    <section class="game-section">
+        <h2>Fortune Tiger</h2>
+        <!-- Conteúdo do jogo -->
+        <!-- Por exemplo, um botão para apostar -->
+        <button id="bet-btn">Apostar</button>
+    </section>
 
     <footer>
         <nav>
             <ul>
                 <li><a href="index.html">Início</a></li>
-                <li><a href="tigrinho.html" class="active">Tigrinho</a></li>
-                <li><a href="deposito.html">Depósito</a></li>
+                <li><a href="#">Saque</a></li>
+                <li><a href="#">Promoção</a></li>
+                <li><a href="#">Depósito</a></li>
                 <li><a href="perfil.html">Perfil</a></li>
             </ul>
         </nav>
     </footer>
 
-    <script src="tigrinho.js"></script> <!-- Link para o JavaScript -->
     <script>
-        // Carrega o saldo do localStorage
-        let balance = parseFloat(localStorage.getItem('balance')) || 100;
-        document.getElementById('balance').textContent = balance.toFixed(2);
+        // Função para carregar informações do usuário atual
+        function loadUserBalance() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert('Você não está logado. Redirecionando para a página inicial.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === currentUser);
+
+            if (user) {
+                document.getElementById('balance').textContent = user.balance.toFixed(2);
+            } else {
+                alert('Usuário não encontrado. Redirecionando para a página inicial.');
+                window.location.href = 'index.html';
+            }
+        }
+
+        loadUserBalance();
+
+        // Exemplo de funcionalidade de aposta que decrementa o saldo
+        document.getElementById('bet-btn').onclick = function() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert('Você não está logado!');
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const userIndex = users.findIndex(user => user.username === currentUser);
+
+            if (userIndex === -1) {
+                alert('Usuário não encontrado!');
+                return;
+            }
+
+            let user = users[userIndex];
+
+            // Exemplo: Apostar 10 unidades
+            const betAmount = 10;
+
+            if (user.balance < betAmount) {
+                alert('Saldo insuficiente para esta aposta.');
+                return;
+            }
+
+            // Simulação de aposta: 50% de chance de ganhar o dobro
+            const win = Math.random() < 0.5;
+            if (win) {
+                user.balance += betAmount; // Ganha o valor da aposta
+                alert('Você ganhou a aposta!');
+            } else {
+                user.balance -= betAmount; // Perde o valor da aposta
+                alert('Você perdeu a aposta.');
+            }
+
+            // Atualiza o usuário na lista
+            users[userIndex] = user;
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Atualiza o saldo exibido
+            document.getElementById('balance').textContent = user.balance.toFixed(2);
+        }
     </script>
 </body>
 </html>

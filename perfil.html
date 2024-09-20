@@ -6,6 +6,9 @@
     <title>Perfil do Usuário - Casa de Apostas</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="perfil.css">
+    <style>
+        /* Adicione estilos adicionais se necessário */
+    </style>
 </head>
 <body>
     <header>
@@ -21,6 +24,7 @@
                 </div>
             </div>
             <div class="header-icons">
+                <button class="icon-btn" id="logout-btn">Logout</button>
                 <button class="icon-btn">Support</button>
                 <button class="icon-btn">Mensagem</button>
                 <button class="icon-btn">Dados</button>
@@ -74,16 +78,36 @@
     </footer>
 
     <script>
-        // Carrega o nome de usuário do localStorage e atualiza a exibição
-        const usernameDisplay = document.getElementById('usernameDisplay');
-        const storedUsername = localStorage.getItem('username');
-        if (storedUsername) {
-            usernameDisplay.textContent = storedUsername; // Atualiza o nome de usuário exibido
+        // Função para carregar informações do usuário atual
+        function loadUserData() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                alert('Você não está logado. Redirecionando para a página inicial.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === currentUser);
+
+            if (user) {
+                document.getElementById('usernameDisplay').textContent = user.username;
+                document.getElementById('balance').textContent = user.balance.toFixed(2);
+            } else {
+                alert('Usuário não encontrado. Redirecionando para a página inicial.');
+                window.location.href = 'index.html';
+            }
         }
 
-        // Carrega o saldo do localStorage ou define como 100 se não existir
-        let balance = parseFloat(localStorage.getItem('balance')) || 100;
-        document.getElementById('balance').textContent = balance.toFixed(2);
+        loadUserData();
+
+        // Logout funcionalidade
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn.onclick = function() {
+            localStorage.removeItem('currentUser');
+            alert('Logout realizado com sucesso!');
+            window.location.href = 'index.html';
+        }
     </script>
 </body>
 </html>
